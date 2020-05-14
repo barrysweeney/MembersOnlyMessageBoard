@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <h1>Sign Up</h1>
+    <form action="" method="POST">
+      <% if (rerender) {%>
+      <label for="forename">Forename</label><br />
+      <input name="forename" type="text" required value="<%= rerender.forename %>"/><br />
+      <label for="surname">Surname</label><br />
+      <input name="surname" type="text" required value="<%= rerender.surname %>"/><br />
+      <label for="username">Username</label><br />
+      <input name="username" type="text" required value="<%= rerender.username %>"/><br />
+      <%} else{ %>
+        <label for="forename">Forename</label><br />
+        <input name="forename" type="text" required /><br />
+        <label for="surname">Surname</label><br />
+        <input name="surname" type="text" required /><br />
+        <label for="username">Username</label><br />
+        <input name="username" type="text" required /><br />
+        <%}%>
+      <label for="password">Password</label><br />
+      <input name="password" type="password" required /><br />
+      <label for="confirmPassword">Confirm Password</label><br />
+      <input name="confirmPassword" type="password" required /><br />
+      <button>Sign Up</button>
+    </form>
+    
+    <% if (errors){ %>
+      <ul><div>
+        <% errors.forEach(error =>{%>
+    <li><%= error.msg %></li>
+    <%
+       });%>
+    </u> </div>
+  <%  }
+    %>
+   
+  </body>
+</html>

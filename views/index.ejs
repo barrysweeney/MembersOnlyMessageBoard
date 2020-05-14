@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Members Only</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>Members Only Message Board</h1>
+    <% if (user) {%>
+    <h2>Welcome back <%= user.username %></h2>
+    <% if (!user.member){%>
+    <p>
+      To become a member you can join
+      <a href="/user/join">here</a>... Psst, the secret password is "1234"
+    </p>
+    <%}%> <% if (!user.admin){%>
+    <p>
+      Register <a href="user/register-admin">here</a> to become an admin to this
+      site
+    </p>
+    <% } %>
+    <p><a href="/message/create">Create new message</a></p>
+    <p><a href="/log-out">Log Out</a></p>
+    <% } else { %>
+    <h2>Please log in to create messages and see fellow members</h2>
+    <form action="/log-in" method="POST">
+      <label for="username">Username</label>
+      <input name="username" type="text" />
+      <label for="password">Password</label>
+      <input name="password" type="password" />
+      <button>Log In</button>
+    </form>
+    <p>Not a member? <a href="/user/create">Sign Up</a></p>
+    <%}%> <% if(messages) {%>
+    <h1>Message Board 📌</h1>
+    <div>
+      <% messages.forEach(message => { %>
+      <div>
+        <h2>Title:</h2>
+        <p><%= message.title %></p>
+        <h3>Author:</h3>
+        <% if (user && user.member) {%>
+        <p><%= message.author.username %></p>
+        <% }else{ %>
+        <p>Log in to see who posted this</p>
+        <% } %>
+        <h3>Date posted:</h3>
+        <% if (user && user.member) {%>
+        <p><%= message.timestamp %></p>
+        <% }else{ %>
+        <p>Log in to see when this was posted</p>
+        <% } %>
+        <h4>Content:</h4>
+        <p><%= message.content %></p>
+        <% if (user && user.member && user.admin){ %>
+        <a href="/message/<%= message._id %>/delete">Delete Message</a>
+        <% } %>
+      </div>
+      <% });%>
+    </div>
+    <hr />
+    <% } %>
+  </body>
+</html>

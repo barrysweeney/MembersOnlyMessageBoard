@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Register Admin</title>
+</head>
+
+<body>
+    <h1>Become an Admin</h1>
+    <% if (user && user.member) {%>
+    <p>To become an admin for this site you can send me through an email at "barrysweeney172@live.co.uk"</p>
+    <p>I'll set you up with a password which you can enter below and you'll be ready to start administrating and what not</p>
+    <form action="" method="POST">
+        <label for="password">Password</label><br />
+        <input name="password" type="password" required /><br />
+        <button>Register</button>
+    </form>
+
+    <% if (errors){ %>
+    <div>
+        <ul>
+            <% errors.forEach(error =>{%>
+            <li><%= error.msg %></li>
+            <%
+       });%>
+            </u>
+    </div>
+    <%  }
+    %>
+    <% }else{ %>
+    <p>You must be a member first, to do that you can <a href="/user/create">Sign Up</a>, then <a href="/">log in</a> and <a href="/user/join">become a member.</a> See you then.</p>
+    <% } %>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Join</title>
+</head>
+
+<body>
+    <h1>Become a member</h1>
+    <% if (user) {%>
+    <p>Just one final step to join the club, enter the secret password to become a member.</p>
+    <form action="" method="POST">
+      <label for="password">Password</label><br />
+      <input name="password" type="password" required /><br />
+      <button>Join</button>
+    </form>
+    
+    <% if (errors){ %>
+        <div>
+        <ul>
+            <% errors.forEach(error =>{%>
+            <li><%= error.msg %></li>
+            <%
+       });%>
+            </u>
+            </div>
+            <%  }
+    %>
+       <% }else{ %>
+        <p>When you sign up and log in you'll be given a secret password to become a member, do that first then come back here, we'll wait... <a href="/user/create">Sign Up</a></p>
+       <% } %>
+</body>
+
+</html>

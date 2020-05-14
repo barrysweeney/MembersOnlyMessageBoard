@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+
+  <body>
+    <% if (user && user.member) {%>
+    <h1>Create new message</h1>
+    <form action="" method="POST">
+      <label for="title">Title</label><br /><br />
+      <input name="title" type="text" required /><br />
+      <label for="content">Content</label><br />
+      <textarea name="content" type="textarea" required></textarea><br />
+      <button>Create message</button>
+    </form>
+    <% } else if (user){ %>
+    <p>
+      Please <a href="/user/join">become a member</a> to create a new message
+    </p>
+    <%}else{%>
+    <p>Please <a href="/">log in</a> to create a new message</p>
+    <%}%>
+  </body>
+</html>
